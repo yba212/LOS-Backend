@@ -60,10 +60,10 @@ export const handleProofResult = (payload: any) => {
     Object.keys(payload.requested_presentation?.revealed_attrs || {});
 
   if (!requestedAttrs.length) {
-    console.warn("⚠️ No requested attributes found for thread:", threadId);
+    // console.warn("⚠️ No requested attributes found for thread:", threadId);
     return false;
   }
-console.log("Stored proof for thread:", threadId);
+// console.log("Stored proof for thread:", threadId);
 
   const userData = extractUserData(payload, requestedAttrs);
   if (!userData) return;
@@ -76,20 +76,20 @@ console.log("Stored proof for thread:", threadId);
     receivedAt: new Date().toISOString(),
   });
 
-  console.log("thid in proofstore:", proofResultStore)
+  // console.log("thid in proofstore:", proofResultStore)
     // userData);
 
   // Log full response
-  console.log("\n=========== USER PROOF RESULT RECEIVED ===========\n");
-  console.log("Thread ID:", threadId);
-  console.log("Payload received from NDI app:", JSON.stringify(payload, null, 2));
-  console.log("\n===================================================\n");
+  // console.log("\n=========== USER PROOF RESULT RECEIVED ===========\n");
+  // console.log("Thread ID:", threadId);
+  // console.log("Payload received from NDI app:", JSON.stringify(payload, null, 2));
+  // console.log("\n===================================================\n");
 
-  // Log final user data ONCE
-  console.log("\n=========== FINAL USER DATA RECEIVED ===========\n");
-  console.log("Thread ID:", threadId);
-  console.table(userData);
-  console.log("\n================================================\n");
+  // // Log final user data ONCE
+  // console.log("\n=========== FINAL USER DATA RECEIVED ===========\n");
+  // console.log("Thread ID:", threadId);
+  // console.table(userData);
+  // console.log("\n================================================\n");
   return true;
 };
 
@@ -101,7 +101,7 @@ export const ndiWebhookHandler = async (req: Request, res: Response) => {
   const threadId = req.body?.thid;
 
   if (!threadId) {
-    console.warn("⚠️ Webhook received without threadId");
+    // console.warn("⚠️ Webhook received without threadId");
     return res.status(400).json({ message: "threadId missing" });
   }
 
@@ -111,17 +111,17 @@ export const ndiWebhookHandler = async (req: Request, res: Response) => {
     return res.status(200).json({ message: "Webhook already processed" });
   }
 
-  console.log("From NDI Webhook Handler:");
+  // console.log("From NDI Webhook Handler:");
   try {
-    console.log("\n=========== NDI WEBHOOK HIT ===========\n");
-    console.log("Thread ID:", threadId);
+    // console.log("\n=========== NDI WEBHOOK HIT ===========\n");
+    // console.log("Thread ID:", threadId);
 
     // Call dedicated handler
     const ResponseRes =  handleProofResult(req.body);
-    console.log("HandleProofResult Response:",
-      ResponseRes)
+    // console.log("HandleProofResult Response:",
+    //   ResponseRes)
 
-    console.log("\n=====================================\n");
+    // console.log("\n=====================================\n");
 
     // Always ACK NDI
     return res.status(200).json({
@@ -129,7 +129,7 @@ export const ndiWebhookHandler = async (req: Request, res: Response) => {
     ResponseRes
     });
   } catch (error) {
-    console.error("Webhook handler error:", error);
+    // console.error("Webhook handler error:", error);
     return res.status(500).json({ message: "Webhook error" });
   }
 };
@@ -139,7 +139,7 @@ export const ndiWebhookHandler = async (req: Request, res: Response) => {
 
 export function getProofByThreadId(threadId: string) {
   const proof = proofResultStore.get(threadId);
-  console.log("ProofResult store at get Proof func:", proofResultStore)
+  // console.log("ProofResult store at get Proof func:", proofResultStore)
 
   if (!proof) {
     return {
@@ -169,11 +169,11 @@ export const startNdiVerification = async (req: Request, res: Response) => {
   try {
     // 1️⃣ Register webhook
     const result = await registerWebhook(accessToken);
-    console.log("✅ Webhook registered:", result ?? "Already exists");
+    // console.log("✅ Webhook registered:", result ?? "Already exists");
 
     // 2️⃣ Request proof (only once!)
     const proofData = await requestProof(accessToken);
-    console.log("✅ Proof requested Response:", proofData);
+    // console.log("✅ Proof requested Response:", proofData);
 
     // Store requested attributes for this proof thread immediately
     requestedAttributesStore.set(
@@ -186,7 +186,7 @@ export const startNdiVerification = async (req: Request, res: Response) => {
       accessToken,
       proofData.proofRequestThreadId
     );
-    console.log("✅ Webhook subscribed to proof thread:", subscriptionRes);
+    // console.log("✅ Webhook subscribed to proof thread:", subscriptionRes);
 
     // 4️⃣ Respond immediately
     return res.status(201).json({
@@ -198,7 +198,7 @@ export const startNdiVerification = async (req: Request, res: Response) => {
       },
     });
   } catch (error: any) {
-    console.error("NDI verification failed:", error);
+    // console.error("NDI verification failed:", error);
 
     return res.status(500).json({
       message: "NDI verification failed",

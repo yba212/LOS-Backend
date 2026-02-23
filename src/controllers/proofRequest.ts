@@ -52,58 +52,58 @@ const proofs = [{
     { name: "Dzongkhag", restrictions: [{ schema_name: "https://dev-schema.ngotag.com/schemas/e3b606d0-e477-4fc2-b5ab-0adc4bd75c54" }] },
     ]
 }, 
-{
-    proofname: "Verify Foundational ID (Permit Info)",
-    proofAttributes: [
-  // ==========================
-    // Permit Info
-    // ==========================
-    { name: "Permit Number", restrictions: [{ schema_name: "https://dev-schema.ngotag.com/schemas/aa292394-13f4-44c7-94e9-b4c8f0d633c3" }] },
-    { name: "Expiry Date", restrictions: [{ schema_name: "https://dev-schema.ngotag.com/schemas/aa292394-13f4-44c7-94e9-b4c8f0d633c3" }] },
-    { name: "Issue Date", restrictions: [{ schema_name: "https://dev-schema.ngotag.com/schemas/aa292394-13f4-44c7-94e9-b4c8f0d633c3" }] },
-    { name: "Job Category", restrictions: [{ schema_name: "https://dev-schema.ngotag.com/schemas/aa292394-13f4-44c7-94e9-b4c8f0d633c3" }] },
-    { name: "Employer Name ", restrictions: [{ schema_name: "https://dev-schema.ngotag.com/schemas/aa292394-13f4-44c7-94e9-b4c8f0d633c3" }] },
-    { name: "Location Dzongkhag ", restrictions: [{ schema_name: "https://dev-schema.ngotag.com/schemas/aa292394-13f4-44c7-94e9-b4c8f0d633c3" }] },
-    { name: "Location Gewog ", restrictions: [{ schema_name: "https://dev-schema.ngotag.com/schemas/aa292394-13f4-44c7-94e9-b4c8f0d633c3" }] },
-    { name: "Worksite", restrictions: [{ schema_name: "https://dev-schema.ngotag.com/schemas/aa292394-13f4-44c7-94e9-b4c8f0d633c3" }] },
-    ]
-},  
-{
-    proofname: "Verify Foundational ID(Student Permit)",
-    proofAttributes: [
+// {
+//     proofname: "Verify Foundational ID (Permit Info)",
+//     proofAttributes: [
+//   // ==========================
+//     // Permit Info
+//     // ==========================
+//     { name: "Permit Number", restrictions: [{ schema_name: "https://dev-schema.ngotag.com/schemas/aa292394-13f4-44c7-94e9-b4c8f0d633c3" }] },
+//     { name: "Expiry Date", restrictions: [{ schema_name: "https://dev-schema.ngotag.com/schemas/aa292394-13f4-44c7-94e9-b4c8f0d633c3" }] },
+//     { name: "Issue Date", restrictions: [{ schema_name: "https://dev-schema.ngotag.com/schemas/aa292394-13f4-44c7-94e9-b4c8f0d633c3" }] },
+//     { name: "Job Category", restrictions: [{ schema_name: "https://dev-schema.ngotag.com/schemas/aa292394-13f4-44c7-94e9-b4c8f0d633c3" }] },
+//     { name: "Employer Name ", restrictions: [{ schema_name: "https://dev-schema.ngotag.com/schemas/aa292394-13f4-44c7-94e9-b4c8f0d633c3" }] },
+//     { name: "Location Dzongkhag ", restrictions: [{ schema_name: "https://dev-schema.ngotag.com/schemas/aa292394-13f4-44c7-94e9-b4c8f0d633c3" }] },
+//     { name: "Location Gewog ", restrictions: [{ schema_name: "https://dev-schema.ngotag.com/schemas/aa292394-13f4-44c7-94e9-b4c8f0d633c3" }] },
+//     { name: "Worksite", restrictions: [{ schema_name: "https://dev-schema.ngotag.com/schemas/aa292394-13f4-44c7-94e9-b4c8f0d633c3" }] },
+//     ]
+// },  
+// {
+    // proofname: "Verify Foundational ID(Student Permit)",
+    // proofAttributes: [
     // ==========================
     // Student Permit
     // ==========================
-    { name: "Permit Number", restrictions: [{ schema_name: "https://dev-schema.ngotag.com/schemas/aa292394-13f4-44c7-94e9-b4c8f0d633c3" }] },
-    { name: "Expiry Date", restrictions: [{ schema_name: "https://dev-schema.ngotag.com/schemas/aa292394-13f4-44c7-94e9-b4c8f0d633c3" }] },
-    { name: "Issue Date", restrictions: [{ schema_name: "https://dev-schema.ngotag.com/schemas/aa292394-13f4-44c7-94e9-b4c8f0d633c3" }] },
-    { name: "Institution ", restrictions: [{ schema_name: "https://dev-schema.ngotag.com/schemas/aa292394-13f4-44c7-94e9-b4c8f0d633c3" }] },
-    ]
-}, 
-{
-    proofname: "Verify Foundational ID(Immigration Card)",
-    proofAttributes: [
+//     { name: "Permit Number", restrictions: [{ schema_name: "https://dev-schema.ngotag.com/schemas/aa292394-13f4-44c7-94e9-b4c8f0d633c3" }] },
+//     { name: "Expiry Date", restrictions: [{ schema_name: "https://dev-schema.ngotag.com/schemas/aa292394-13f4-44c7-94e9-b4c8f0d633c3" }] },
+//     { name: "Issue Date", restrictions: [{ schema_name: "https://dev-schema.ngotag.com/schemas/aa292394-13f4-44c7-94e9-b4c8f0d633c3" }] },
+//     { name: "Institution ", restrictions: [{ schema_name: "https://dev-schema.ngotag.com/schemas/aa292394-13f4-44c7-94e9-b4c8f0d633c3" }] },
+//     ]
+// }, 
+// {
+//     proofname: "Verify Foundational ID(Immigration Card)",
+//     proofAttributes: [
     // ==========================
     // Immigration Card
     // ==========================
-    { name: "Card Number", restrictions: [{ schema_name: "https://dev-schema.ngotag.com/schemas/b6f5b945-81f8-47d3-84d4-eb8db3d9414a" }] },
-    { name: "Expiry Date", restrictions: [{ schema_name: "https://dev-schema.ngotag.com/schemas/b6f5b945-81f8-47d3-84d4-eb8db3d9414a" }] },
-    { name: "Issue Date", restrictions: [{ schema_name: "https://dev-schema.ngotag.com/schemas/b6f5b945-81f8-47d3-84d4-eb8db3d9414a" }] },
-    { name: "Spouse CID", restrictions: [{ schema_name: "https://dev-schema.ngotag.com/schemas/b6f5b945-81f8-47d3-84d4-eb8db3d9414a" }] },
-    ]
-},  
-{
-    proofname: "Verify Foundational ID(Dependent Permit)",
-    proofAttributes: [
-    // ==========================
-    // Dependent Permit
-    // ==========================
-    { name: "Permit Number", restrictions: [{ schema_name: "https://dev-schema.ngotag.com/schemas/cbf31183-73d3-4a49-b24e-d61b7d6ad4e6" }] },
-    { name: "Expiry Date", restrictions: [{ schema_name: "https://dev-schema.ngotag.com/schemas/cbf31183-73d3-4a49-b24e-d61b7d6ad4e6" }] },
-    { name: "Issue Date", restrictions: [{ schema_name: "https://dev-schema.ngotag.com/schemas/cbf31183-73d3-4a49-b24e-d61b7d6ad4e6" }] },
-    { name: "Relationship  ", restrictions: [{ schema_name: "https://dev-schema.ngotag.com/schemas/cbf31183-73d3-4a49-b24e-d61b7d6ad4e6" }] },
-    ]
-},  
+    // { name: "Card Number", restrictions: [{ schema_name: "https://dev-schema.ngotag.com/schemas/b6f5b945-81f8-47d3-84d4-eb8db3d9414a" }] },
+    // { name: "Expiry Date", restrictions: [{ schema_name: "https://dev-schema.ngotag.com/schemas/b6f5b945-81f8-47d3-84d4-eb8db3d9414a" }] },
+    // { name: "Issue Date", restrictions: [{ schema_name: "https://dev-schema.ngotag.com/schemas/b6f5b945-81f8-47d3-84d4-eb8db3d9414a" }] },
+    // { name: "Spouse CID", restrictions: [{ schema_name: "https://dev-schema.ngotag.com/schemas/b6f5b945-81f8-47d3-84d4-eb8db3d9414a" }] },
+//     ]
+// },  
+// {
+//     proofname: "Verify Foundational ID(Dependent Permit)",
+//     proofAttributes: [
+//     // ==========================
+//     // Dependent Permit
+//     // ==========================
+//     { name: "Permit Number", restrictions: [{ schema_name: "https://dev-schema.ngotag.com/schemas/cbf31183-73d3-4a49-b24e-d61b7d6ad4e6" }] },
+//     { name: "Expiry Date", restrictions: [{ schema_name: "https://dev-schema.ngotag.com/schemas/cbf31183-73d3-4a49-b24e-d61b7d6ad4e6" }] },
+//     { name: "Issue Date", restrictions: [{ schema_name: "https://dev-schema.ngotag.com/schemas/cbf31183-73d3-4a49-b24e-d61b7d6ad4e6" }] },
+//     { name: "Relationship  ", restrictions: [{ schema_name: "https://dev-schema.ngotag.com/schemas/cbf31183-73d3-4a49-b24e-d61b7d6ad4e6" }] },
+//     ]
+// },  
 
 {
     proofname: "Verify Foundational ID2",
@@ -140,7 +140,7 @@ export const requestProof = async (accessToken: string) => {
   try {
     const proofPayload = buildProofPayload("Verify Foundational ID");
 
-    console.log("proof Payload:", proofPayload)
+    // console.log("proof Payload:", proofPayload)
     const response = await axios.post(
       `${ndiVerifierConfig.baseUrl}${ndiVerifierConfig.proofRequestPath}`,
       proofPayload,
@@ -166,20 +166,20 @@ export const requestProof = async (accessToken: string) => {
     /* ---------------------------------------------------------------------- */
     /*                        TERMINAL QR GENERATION                           */
     /* ---------------------------------------------------------------------- */
-    console.log("Payload sent:", proofPayload);
+    // console.log("Payload sent:", proofPayload);
 
-    console.log("\n================= NDI PROOF REQUEST =================\n");
-    console.log(`Proof Name     : ${proofRequestName}`);
-    console.log(`Thread ID      : ${proofRequestThreadId}\n`);
+    // console.log("\n================= NDI PROOF REQUEST =================\n");
+    // console.log(`Proof Name     : ${proofRequestName}`);
+    // console.log(`Thread ID      : ${proofRequestThreadId}\n`);
 
-    console.log("Scan this QR Code using Bhutan NDI App:\n");
+    // console.log("Scan this QR Code using Bhutan NDI App:\n");
 
     // Render QR directly in terminal
     const terminalQR = await QRCode.toString(proofRequestURL, {
       type: "terminal",
       small: true,
     });
-    console.log(terminalQR);
+    // console.log(terminalQR);
 
     // console.log("Deep Link (Mobile Only):");
     // console.log(deepLinkURL);
@@ -196,11 +196,11 @@ const requestedAttributeNames = proofPayload.proofAttributes.map(
       requestedAttributeNames,
     };
   } catch (error: any) {
-    console.error(
-      "PROOF REQUEST FAILED:",
-      error.response?.status,
-      error.response?.data || error.message
-    );
+    // console.error(
+    //   "PROOF REQUEST FAILED:",
+    //   error.response?.status,
+    //   error.response?.data || error.message
+    // );
     throw error;
   }
 };

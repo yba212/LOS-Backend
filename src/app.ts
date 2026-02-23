@@ -6,7 +6,7 @@ import bodyParser from "body-parser"
 import { ndiWebhookHandler } from "./controllers/ndiWebhook.controllers";
 import ndiWebhookRoutes from "./routes/ndi.routes";
 import proofResultRoutes from "./routes/proofResult.routes"
-
+import postRoutes from "./routes/posting.routes"
 
 
 const app = express()
@@ -26,5 +26,8 @@ app.post("/ndi/webhook", ndiWebhookHandler)
 
 // user data from proof request
 app.use("/api/proof-result", proofResultRoutes);
+
+// Posting user data to BIl DB and file upload
+app.use("/api/post", postRoutes);
 
 export default app

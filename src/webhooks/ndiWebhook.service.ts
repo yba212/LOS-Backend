@@ -64,7 +64,7 @@ export const registerWebhook = async (accessToken: string) => {
   };
 
   try {
-    console.log("Registering NDI Webhook:", payload);
+    // console.log("Registering NDI Webhook:", payload);
 
     const response = await axios.post(
       `${ndiWebhookConfig.baseURL}${ndiWebhookConfig.registerPath}`,
@@ -82,19 +82,19 @@ export const registerWebhook = async (accessToken: string) => {
     // console.log("Webhook registered successfully");
     return response.data;
   } catch (error: any) {
-    console.log("Registration RESPONSE:", error.response.data);
+    // console.log("Registration RESPONSE:", error.response.data);
 
     if (error.response?.status === 409) {
-      console.log("Webhook already exists. Skipping registration.");
+      // console.log("Webhook already exists. Skipping registration.");
       
       return;
     }
 
-    console.error(
-      "NDI WEBHOOK REGISTER FAILED:",
-      error.response?.status,
-      error.response?.data || error.message
-    );
+    // console.error(
+    //   "NDI WEBHOOK REGISTER FAILED:",
+    //   error.response?.status,
+    //   error.response?.data || error.message
+    // );
     throw error;
   }
 };
@@ -113,7 +113,7 @@ export const subscribeWebhook = async (
   };
 
   try {
-    console.log("Subscribing to NDI Webhook:", payload);
+    // console.log("Subscribing to NDI Webhook:", payload);
 
     const response = await axios.post(
       `${ndiWebhookConfig.baseURL}/webhook/v1/subscribe`,
@@ -128,14 +128,14 @@ export const subscribeWebhook = async (
       }
     );
 
-    console.log("Webhook subscription successful");
+    // console.log("Webhook subscription successful");
     return response.data;
   } catch (error: any) {
-    console.error(
-      "NDI WEBHOOK SUBSCRIBE FAILED:",
-      error.response?.status,
-      error.response?.data || error.message
-    );
+    // console.error(
+    //   "NDI WEBHOOK SUBSCRIBE FAILED:",
+    //   error.response?.status,
+    //   error.response?.data || error.message
+    // );
     throw error;
   }
 };
