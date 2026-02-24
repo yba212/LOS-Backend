@@ -1,0 +1,29 @@
+export interface PersonalPayload {
+  applicantName: string;
+  gender: string;
+  nationality: string;
+  identificationType: string;
+  identificationNo: string;
+  identificationIssueDate: string;
+  identificationExpiryDate: string;
+  dateOfBirth: string;
+  maritalStatus: string;
+  bankName: string;
+  bankAccount: string;
+  tpn: string;
+  currContact: string;
+  currAlternateContact?: string;
+  currEmail: string;
+  permCountry: string;
+  permDzongkhag: string;
+  permGewog: string;
+  permVillage: string;
+  permThram: string;
+  permHouse: string;
+  currCountry: string;
+  currDzongkhag: string;
+  currGewog: string;
+  currVillage: string;
+  currThram: string;
+  currHouseNo: string;
+}
