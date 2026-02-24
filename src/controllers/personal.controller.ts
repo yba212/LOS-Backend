@@ -3,44 +3,47 @@ import { supabase } from '../lib/supabase';
 
 export const submitPersonalDetails = async (req: Request, res: Response) => {
   try {
-        // 1️⃣ Parse JSON text field
     const data = JSON.parse(req.body.data);
+    const files = req.files as {
+      [fieldname: string]: Express.Multer.File[];
+    };
 
-
-    const files = req.files as { [fieldname: string]: Express.Multer.File[] };
-
-       if (!data.identificationNo) {
+    if (!data.identificationNo) {
       return res.status(400).json({
-        error: 'CID (identificationNo) is required',
+        success: false,
+        message: "CID is required"
       });
     }
 
-    // 🔎 1️⃣ CHECK IF CID ALREADY EXISTS
+    // 1️⃣ Check if CID already exists
     const { data: existingUser, error: checkError } = await supabase
       .from('personal_details')
-      .select('id')
+      .select('*')
       .eq('identification_no', data.identificationNo)
       .maybeSingle();
 
     if (checkError) throw checkError;
 
+    // 2️⃣ If exists → return existing record
     if (existingUser) {
-      return res.status(400).json({
-        error: 'Record with this CID already exists',
+      return res.status(200).json({
+        success: true,
+        alreadyExists: true,
+        data: existingUser
       });
     }
 
-    // 📂 2️⃣ Upload Files to STorage
+    // 3️⃣ Upload Files
     const uploadedFiles: Record<string, string> = {};
 
     for (const field of ['passportPhoto', 'currAddressProof', 'familyTree']) {
       const file = files?.[field]?.[0];
       if (!file) continue;
 
-      const fileName = `${Date.now()}-${file.originalname.replace(/\s/g, '-')}`;
+      const fileName = `${data.identificationNo}-${Date.now()}-${file.originalname.replace(/\s/g, '-')}`;
 
       const { error: storageError } = await supabase.storage
-        .from('party-documnets') // your correct bucket name
+        .from('user-files')
         .upload(fileName, file.buffer, {
           contentType: file.mimetype,
         });
@@ -48,18 +51,14 @@ export const submitPersonalDetails = async (req: Request, res: Response) => {
       if (storageError) throw storageError;
 
       const { data: publicUrlData } = supabase.storage
-        .from('party-documnets')
+        .from('user-files')
         .getPublicUrl(fileName);
 
-        const publicUrl = publicUrlData.publicUrl;
-
-        console.log("Generated URL:", publicUrl); // 👈 Add this
-
-        uploadedFiles[field] = publicUrl;
+      uploadedFiles[field] = publicUrlData.publicUrl;
     }
 
-    // 📝 3️⃣ Insert Record
-    const { data: dbData, error: dbError } = await supabase
+    // 4️⃣ Insert New Record
+    const { data: insertedData, error: insertError } = await supabase
       .from('personal_details')
       .insert([
         {
@@ -88,25 +87,27 @@ export const submitPersonalDetails = async (req: Request, res: Response) => {
           bank_account: data.bankAccount,
           pep_person: data.pepPerson,
           pep_related: data.pepRelated,
-          passport_photo_url: uploadedFiles['passportPhoto'],
-          curr_address_proof_url: uploadedFiles['currAddressProof'],
-          family_tree_url: uploadedFiles['familyTree'],
+          passport_photo_url: uploadedFiles['passportPhoto'] || null,
+          curr_address_proof_url: uploadedFiles['currAddressProof'] || null,
+          family_tree_url: uploadedFiles['familyTree'] || null,
         },
       ])
       .select()
       .single();
 
-    //   if (insertError) throw insertError;
-    if (dbError) throw dbError;
+    if (insertError) throw insertError;
 
-    return res.status(201).json({
+    return res.status(200).json({
       success: true,
-      message: 'Personal details submitted successfully',
-      data: dbData,
+      alreadyExists: false,
+      data: insertedData
     });
 
   } catch (error: any) {
-    console.error('Error submitting personal details:', error);
-    return res.status(500).json({ error: error.message });
+    console.error("Error:", error);
+    return res.status(500).json({
+      success: false,
+      message: error.message
+    });
   }
 };
